@@ -1,0 +1,260 @@
+\documentclass[xetex,a4paper,14pt]{extarticle} % Лабы
+%\documentclass[xetex,a4paper,14pt]{extreport} % КП, ВКР
+
+% Преамбула
+\usepackage{fontspec} % XeTeX
+\usepackage{xunicode} % Unicode для XeTeX
+\usepackage{xltxtra}  % Верхние и нижние индексы
+\usepackage{pdfpages} % Вставка PDF
+
+
+% Шрифты, xelatex
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman}                % Нормоконтроллеры хотят именно его
+\newfontfamily\cyrillicfont{Times New Roman}
+
+
+% Русский язык
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+
+
+% Абзацы и списки
+\usepackage{enumerate}   % Тонкая настройка списков
+\usepackage{indentfirst} % Красная строка после заголовка
+\usepackage{float}       % Расширенное управление плавающими объектами
+\renewcommand{\baselinestretch}{1.4} % Полуторный межстрочный интервал
+\parindent 1.25cm % Абзацный отступ
+
+
+% Таблицы
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+
+
+% tikz
+\usepackage{tikz}
+
+%% Матрицы
+\usepackage{amsmath}
+
+
+%% Листинги
+\usepackage{listings}
+
+
+% Пути к каталогам с изображениями
+\usepackage{graphicx} % Вставка картинок и дополнений
+\graphicspath{{./images/}}
+
+
+% Подписи объектов
+%\RequirePackage{caption}
+\usepackage{caption}
+
+% Разделитель
+\DeclareCaptionLabelSeparator{dash}{\space--\space}
+
+% Рисунок
+\captionsetup[figure]{justification=centering, labelsep=dash, format=plain} 
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}\vspace{24pt}}
+%\renewcommand{\thefigure}{\arabic{figure}}				 	% номер
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}		% секция.номер
+
+% Таблица
+\captionsetup[table]{justification=raggedright, labelsep=dash, format=plain, singlelinecheck=false}
+%\renewcommand{\thetable}{\arabic{table}}   				% номер
+\renewcommand{\thetable}{\thesection.\arabic{table}}   		% секция.номер
+
+% Листинг
+\captionsetup[lstlisting]{labelseparator=dash}
+
+% Сброс нумерации в каждом section
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+% Гиперссылки
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=black,      
+	urlcolor=black,
+	citecolor=black
+}
+
+\sloppy             % Избавляемся от переполнений
+\hyphenpenalty=100000 % Частота переносов
+\clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+\tolerance=9999
+\emergencystretch=3em
+
+% Отступы у страниц
+\usepackage{geometry}
+\geometry{left=3cm}
+\geometry{right=1.5cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+
+% Списки
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+
+\setlist{nolistsep}                             % Нет отступов между пунктами списка
+% маркированные списки
+\renewcommand{\labelitemi}{--}                  % Маркер списка --
+\renewcommand{\labelitemii}{--}                 % Маркер списка --
+% нумерованные списки
+\renewcommand{\labelenumi}{\arabic{enumi}.}     % Маркер первого уровня
+\renewcommand{\labelenumii}{\asbuk{enumii})}    % Список второго уровня
+\renewcommand{\labelenumiii}{\arabic{enumii})}  % Список третьего уровня
+
+% Содержание
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\bfseries\MakeTextUppercase} % СОДЕРЖАНИЕ
+\renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
+\setcounter{tocdepth}{1}                            % Глубина оглавления, до subsubsection
+
+% Нумерация страниц посередине снизу
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\textrm{\thepage}}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \cfoot{\textrm{\thepage}}
+}
+
+% Заголовки секций в оглавлении в верхнем регистре
+\usepackage{textcase}
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{
+    \expandafter\ifx\csname l@#1\endcsname\l@section
+    \expandafter\@firstoftwo
+    \else
+    \expandafter\@secondoftwo
+    \fi
+    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+    {\oldcontentsline{#1}{#2}}
+}
+\makeatother
+
+% Оформление заголовков
+
+%\renewcommand{\thesection}{\arabic{section}.}  % Точка после номера section в TOC
+%\renewcommand{\thesubsection}{\thesection\arabic{subsection}}  % Убираем точку после section в subsection
+
+\usepackage[compact,explicit]{titlesec}
+
+\titleformat{\section}[block]{\newpage}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}}	
+\titleformat{\subsection}[block]{}{}{12.5mm}{\centering\textbf{\thesubsection\quad#1}}
+\titleformat{\subsubsection}[runin]{\vspace{24pt}}{}{12.5mm}{\thesubsubsection\quad#1}
+\titleformat{\paragraph}[block]{\vspace{24pt}}{}{12.5mm}{\vspace{12pt}\centering\textbf{\quad#1}}[\vspace{12pt}]
+
+\titlespacing*{\section}{0pt}{0pt}{24pt}
+\titlespacing*{\subsection}{0pt}{24pt}{24pt}
+
+%\renewcommand{\cftsecpresnum}{ГЛАВА\space} % Слово Глава перед section
+\newlength\mylength
+\settowidth\mylength{\cftsecpresnum}
+\addtolength\cftsecnumwidth{\mylength}
+
+% Секции без номеров (введение, заключение...), вместо section*{}
+\newcommand{\anonsection}[1]{
+    \newpage
+    \phantomsection % Корректный переход по ссылкам в содержании
+    \paragraph{\textbf{\centering\MakeTextUppercase{{#1}}}}
+    \addcontentsline{toc}{section}{#1}
+}
+
+% Секции для приложений
+% Перед приложениями задаем счетчик section \setcounter{section}{1}
+\newcommand{\appsection}[1]{
+    \addtocounter{section}{1} % добавляется к счетчику заголовков
+    \renewcommand{\thesection}{\Asbuk{section}} % Перевод нумерации заголовков в вид букв А, Б, В...
+    \setcounter{figure}{0}
+    \setcounter{lstlisting}{0}
+    \setcounter{table}{0}
+    \newpage
+    \phantomsection
+    \paragraph{\centerline{\textbf{Приложение \thesection}}}
+    \centerline{#1} \hfill % Название приложения
+    \addcontentsline{toc}{section}{{Приложение \thesection}} % Прописывается в содержание
+}
+
+% Библиография
+% настройка списка литературы
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\section*{\refname}
+    \list{\@biblabel{\@arabic\c@enumiv}}
+    {\settowidth\labelwidth{\@biblabel{#1}}
+        \leftmargin\labelsep
+        \itemindent 16.7mm
+        \@openbib@code
+        \usecounter{enumiv}
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}
+    }
+    \setlength{\itemsep}{0pt}
+}
+\makeatother
+
+% Оформление библиографии и подрисуночных записей через точку
+\makeatletter
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
+\renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
+\def\redeflsection{\def\l@section{\@dottedtocline{1}{0em}{10em}}}
+\makeatother
+
+% Оформление исходного кода
+\renewcommand{\lstlistingname}{Листинг} % Название самого листинга
+\renewcommand{\lstlistlistingname}{Список листингов} % Название списка листингов
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\setmonofont[Script=Cyrillic]{Consolas}
+
+\lstset{ 
+	aboveskip=1cm,
+	backgroundcolor=\color{white},   	% цвет заднего плана
+	basicstyle=\footnotesize\ttfamily,  % размер шрифта
+	breakatwhitespace=false,         	% автопереносы на пробелах
+	breaklines=true,                 	% автопереносы
+	keepspaces=true,                 	% сохраняет пробелы в тексте
+	keywordstyle=\bfseries, % стиль ключевых слов
+	language=[Auto]Lisp,                % язык кода
+	morekeywords={},					% больше клучевых слов через запятую
+	numbers=left,                    	% расположение номеров строк (none, left, right)
+	numbersep=12pt,                   	% расстояние от номеров строк до кода
+	numberstyle=\footnotesize\color{mygray}, 	% стиль номеров строк
+	stepnumber=1,                    	% шаг нумерации
+	showspaces=false,                	% показывать пробелы=нет
+	showstringspaces=false,          	% подчеркивать пробелы в строках
+	showtabs=false,		                % показывать табуляцию
+	% stringstyle=\color{mymauve},     	% стиль строкового литерала
+	tabsize=4,	                     	% количество пробелов в табуляции
+	title=\lstname,                   	% имя файла в заголовке
+	captionpos=b,                    	% имя кода внизу (bottom)
+	extendedchars=true,                     % Включаем поддержку расширенных символов
+	inputencoding=utf8                      % Устанавливаем входную кодировку UTF-8
+}
+
+\usepackage{lastpage} % Подсчет количества страниц
