@@ -31,13 +31,13 @@ mklink tusurlp.tex %userprofile%\repos\tururlp\tusurlp.tex
 **linux**
 
 ```sh
-ln -s tusurlp ~/repos/tusurlp.tex
+ln -s ~/repos/tusurlp.tex tusurlp.tex
 ```
 
 Включите преамбулу в основной документ командой `\input{tusurlp}`:
 
 ```tex
-\input{preamble}
+\input{tusurlp}
 \begin{document}
     ...
 \end{document}
