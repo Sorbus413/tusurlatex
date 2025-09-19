@@ -1,44 +1,35 @@
 ## Что это такое
 
-Файл `tusurLP.tex` [Tusur LaTeX Preamble] -- преамбула LaTeX для оформления контрольных,
+- `template.tex` -- шаблон LaTeX с титульным листом и основными разделами,
+- `preamble.tex` -- преамбула LaTeX для оформления контрольных,
 лабораторных и курсовых работ.
 
-Преамбула работает как и с [MiKTeX](https://miktex.org/) на windows, так и с
-[texlive](https://tug.org) на linux или windows.
+Для работы требуется какой-либо дистрибутив LaTeX, например:
 
-Преамбула вдохновлена [ОС ТУСУР 01-2021](https://regulations.tusur.ru/system/document_files/files/000/000/094/original/OS_TUSUR_01-2021_(soglasovano).pdf?1735368202&ysclid=mfoafj1c5i655723067).
+- [texlive](https://tug.org) для linux или для windows.
+- [MiKTeX](https://miktex.org/) на windows
+
+Шаблоны вдохновлены [ОС ТУСУР 01-2021](https://regulations.tusur.ru/system/document_files/files/000/000/094/original/OS_TUSUR_01-2021_(soglasovano).pdf?1735368202&ysclid=mfoafj1c5i655723067).
 
 ## Как использовать
 
-Клонируйте себе данный репозиторий
+**Клонируйте** себе данный репозиторий
 
 ```sh
 mkdir repos
 cd repos
-git clone https://gitflic.ru/project/salixsorbus/tusurlp.git
+git clone https://gitflic.ru/project/salixsorbus/tusurlatex.git
 ```
 
-В папке с файлом основного документа `*.tex` создайте символическую ссылку на файл
-преамбулы из репозитория.
+**Перейдите** в папку с работой и
+**Скопируйте** файл шаблона `template.tex` в эту папку:
 
-
-**windows**
-
-```cmd
-mklink tusurlp.tex %userprofile%\repos\tururlp\tusurlp.tex
+```sh
+cp ~/repos/tusurlatex/template.tex lab1.tex
 ```
 
-**linux**
+**Создайте** символическую ссылку на файл преамбулы:
 
 ```sh
 ln -s ~/repos/tusurlp.tex tusurlp.tex
-```
-
-Включите преамбулу в основной документ командой `\input{tusurlp}`:
-
-```tex
-\input{tusurlp}
-\begin{document}
-    ...
-\end{document}
 ```

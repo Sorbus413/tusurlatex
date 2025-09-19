@@ -199,6 +199,13 @@
     \addcontentsline{toc}{section}{{Приложение \thesection}} % Прописывается в содержание
 }
 
+% Оформление библиографии и подрисуночных записей через точку
+\makeatletter
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
+\renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
+\def\redeflsection{\def\l@section{\@dottedtocline{1}{0em}{10em}}}
+\makeatother
+
 % Библиография
 % настройка списка литературы
 \makeatletter
@@ -215,13 +222,6 @@
     }
     \setlength{\itemsep}{0pt}
 }
-\makeatother
-
-% Оформление библиографии и подрисуночных записей через точку
-\makeatletter
-\renewcommand*{\@biblabel}[1]{\hfill#1.}
-\renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
-\def\redeflsection{\def\l@section{\@dottedtocline{1}{0em}{10em}}}
 \makeatother
 
 % Оформление исходного кода
