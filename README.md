@@ -31,5 +31,5 @@ cp ~/repos/tusurlatex/template.tex lab1.tex
 **Создайте** символическую ссылку на файл преамбулы:
 
 ```sh
-ln -s ~/repos/tusurlp.tex tusurlp.tex
+ln -s ~/repos/preamble.tex preamble.tex
 ```
