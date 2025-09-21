@@ -13,6 +13,8 @@
 
 ## Как использовать
 
+### Символическая ссылка
+
 **Клонируйте** себе данный репозиторий
 
 ```sh
@@ -32,4 +34,27 @@ cp ~/repos/tusurlatex/template.tex lab1.tex
 
 ```sh
 ln -s ~/repos/preamble.tex preamble.tex
+```
+
+### Подмодуль
+
+Если проект вашей работы планируется размещать в git репозитории,
+то подключите этот проект к вашему как подмодуль:
+
+```sh
+git submodule add https://gitflic.ru/project/salixsorbus/tusurlatex.git
+```
+
+Затем добавьте его в `.gitignore`:
+
+```.gitignore
+tusurlatex/
+```
+
+При этом в основном документе ссылка на преамбулу тогда будет в виде:
+
+```tex
+\input{tusurlatex/preamble}
+\begin{document}
+    ...
 ```
