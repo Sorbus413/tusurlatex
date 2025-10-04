@@ -187,16 +187,16 @@
 % Секции для приложений
 % Перед приложениями задаем счетчик section \setcounter{section}{1}
 \newcommand{\appsection}[1]{
-    \addtocounter{section}{1} % добавляется к счетчику заголовков
     \renewcommand{\thesection}{\Asbuk{section}} % Перевод нумерации заголовков в вид букв А, Б, В...
     \setcounter{figure}{0}
     \setcounter{lstlisting}{0}
     \setcounter{table}{0}
     \newpage
     \phantomsection
+    \refstepcounter{section}
     \paragraph{\centerline{\textbf{Приложение \thesection}}}
     \centerline{#1} \hfill % Название приложения
-    \addcontentsline{toc}{section}{{Приложение \thesection}} % Прописывается в содержание
+    \addcontentsline{toc}{section}{{Приложение \thesection. #1}} % Прописывается в содержание
 }
 
 % Оформление библиографии и подрисуночных записей через точку
@@ -256,14 +256,16 @@
 	title=\lstname,                   	% имя файла в заголовке
 	captionpos=b,                    	% имя кода внизу (bottom)
 	extendedchars=true,                     % Включаем поддержку расширенных символов
-	inputencoding=utf8                      % Устанавливаем входную кодировку UTF-8
+	inputencoding=utf8,                     % Устанавливаем входную кодировку UTF-8
+    xleftmargin=0.75cm
 }
 
 \lstdefinestyle{bash}
 {
     numbers=none,
     aboveskip=0.5cm,
-    belowskip=-0.75cm
+    belowskip=-0.75cm,
+    xleftmargin=0.5cm
 }
 
 \usepackage{lastpage} % Подсчет количества страниц
