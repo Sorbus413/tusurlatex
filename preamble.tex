@@ -163,7 +163,7 @@
 
 \usepackage[compact,explicit]{titlesec}
 
-\titleformat{\section}[block]{\newpage}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}}	
+\titleformat{\section}[block]{}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}}	
 \titleformat{\subsection}[block]{}{}{12.5mm}{\centering\textbf{\thesubsection\quad#1}}
 \titleformat{\subsubsection}[runin]{}{}{12.5mm}{\thesubsubsection\quad#1.}
 \titleformat{\paragraph}[block]{\vspace{24pt}}{}{12.5mm}{\vspace{12pt}\centering\textbf{\quad#1}}[\vspace{12pt}]
@@ -175,6 +175,10 @@
 \newlength\mylength
 \settowidth\mylength{\cftsecpresnum}
 \addtolength\cftsecnumwidth{\mylength}
+
+% заголовок 1 с новой страницы
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
 
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
@@ -193,9 +197,11 @@
     \newpage
     \phantomsection
     \refstepcounter{section}
+    \begin{center}
+        \textbf{ПРИЛОЖЕНИЕ \thesection} \\
+        \textbf{#1}
+    \end{center} 
     \addcontentsline{toc}{section}{{Приложение \thesection. #1}}
-    \paragraph{\centerline{\textbf{Приложение \thesection}}}  
-    \centerline{#1} \hfill % Название приложения
 }
 
 % Оформление библиографии и подрисуночных записей через точку
