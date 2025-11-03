@@ -184,19 +184,18 @@
     \addcontentsline{toc}{section}{#1}
 }
 
-% Секции для приложений
-% Перед приложениями задаем счетчик section \setcounter{section}{1}
+% Приложения
 \newcommand{\appsection}[1]{
-    \renewcommand{\thesection}{\Asbuk{section}} % Перевод нумерации заголовков в вид букв А, Б, В...
+    \renewcommand{\thesection}{\Asbuk{section}}
     \setcounter{figure}{0}
     \setcounter{lstlisting}{0}
     \setcounter{table}{0}
     \newpage
     \phantomsection
     \refstepcounter{section}
-    \paragraph{\centerline{\textbf{Приложение \thesection}}}
+    \addcontentsline{toc}{section}{{Приложение \thesection. #1}}
+    \paragraph{\centerline{\textbf{Приложение \thesection}}}  
     \centerline{#1} \hfill % Название приложения
-    \addcontentsline{toc}{section}{{Приложение \thesection. #1}} % Прописывается в содержание
 }
 
 % Оформление библиографии и подрисуночных записей через точку
