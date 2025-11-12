@@ -1,5 +1,7 @@
 % !TEX TS-program = xelatex
 
+% https://gitflic.ru/project/salixsorbus/tusurlatex
+
 \documentclass[xetex,a4paper,14pt]{extarticle} % Лабы
 %\documentclass[xetex,a4paper,14pt]{extreport} % КП, ВКР
 
@@ -263,9 +265,14 @@
 	breakautoindent=false,
 	breakindent=0pt,
 	postbreak=\mbox{},
-	literate=*%
-	{.}{{.}}1{\_}{{\textunderscore}}1{!}{{!}}1
-	,
+	alsoletter={()},    % считаем скобки частью идентификатора
+    alsodigit={()},     % считаем скобки частью числа
+    literate=*
+    {(}{{(}}1         % сохраняем открывающую скобку
+    {)}{{)}}1         % сохраняем закрывающую скобку
+    {.}{{.}}1         % сохраняем точку
+    {_}{{\textunderscore}}1 % сохраняем нижнее подчеркивание
+    ,
 	keepspaces=true,                 	% сохраняет пробелы в тексте
 	keywordstyle=\bfseries, % стиль ключевых слов
 	language=[Auto]Lisp,                % язык кода
