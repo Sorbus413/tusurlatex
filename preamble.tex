@@ -38,9 +38,10 @@
 % tikz
 \usepackage{tikz}
 
-%% Матрицы
+%% Математика
 \usepackage{amsmath}
-
+\usepackage{pdflscape}
+\usepackage{amssymb}
 
 %% Листинги
 \usepackage{listings}
@@ -79,6 +80,7 @@
 
 % Гиперссылки
 \usepackage{hyperref}
+\usepackage{refcount}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
@@ -189,20 +191,33 @@
 }
 
 % Приложения
-\newcommand{\appsection}[1]{
-    \renewcommand{\thesection}{\Asbuk{section}}
-    \setcounter{figure}{0}
-    \setcounter{lstlisting}{0}
-    \setcounter{table}{0}
+\newcommand{\appsection}[1]{%
     \newpage
-    \phantomsection
-    \refstepcounter{section}
+        
+    \phantomsection   
+    \stepcounter{AppCount}
+    
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    \setcounter{lstlisting}{0}
+    \renewcommand{\thefigure}{\theAppCount.\arabic{figure}}
+    \renewcommand{\thetable}{\theAppCount.\arabic{table}}
+    \renewcommand{\thelstlisting}{\theAppCount.\arabic{lstlisting}}
     \begin{center}
-        \textbf{ПРИЛОЖЕНИЕ \thesection} \\
+        \textbf{ПРИЛОЖЕНИЕ \theAppCount} \\
         \textbf{#1}
-    \end{center} 
-    \addcontentsline{toc}{section}{{Приложение \thesection. #1}}
+    \end{center}
+    \addcontentsline{toc}{section}{Приложение \theAppCount. #1} 
 }
+
+% Счётчик приложений
+\newcounter{AppCount}
+\renewcommand{\theAppCount}{\Asbuk{AppCount}}
+
+% вставить перед первым \appsection в документ
+%\makeatletter
+%\renewcommand{\@currentlabel}{\theAppCount}
+%\makeatother
 
 % Оформление библиографии и подрисуночных записей через точку
 \makeatletter
@@ -245,6 +260,12 @@
 	basicstyle=\small\ttfamily,  % размер шрифта
 	breakatwhitespace=false,         	% автопереносы на пробелах
 	breaklines=true,                 	% автопереносы
+	breakautoindent=false,
+	breakindent=0pt,
+	postbreak=\mbox{},
+	literate=*%
+	{.}{{.}}1{\_}{{\textunderscore}}1{!}{{!}}1
+	,
 	keepspaces=true,                 	% сохраняет пробелы в тексте
 	keywordstyle=\bfseries, % стиль ключевых слов
 	language=[Auto]Lisp,                % язык кода
