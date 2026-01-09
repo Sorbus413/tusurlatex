@@ -229,22 +229,18 @@
 \makeatother
 
 % Библиография
-% настройка списка литературы
-\makeatletter
-\renewenvironment{thebibliography}[1]
-{\section*{\refname}
-    \list{\@biblabel{\@arabic\c@enumiv}}
-    {\settowidth\labelwidth{\@biblabel{#1}}
-        \leftmargin\labelsep
-        \itemindent 16.7mm
-        \@openbib@code
-        \usecounter{enumiv}
-        \let\p@enumiv\@empty
-        \renewcommand\theenumiv{\@arabic\c@enumiv}
-    }
-    \setlength{\itemsep}{0pt}
+\usepackage[
+    style=gost-numeric,
+    language=auto,
+    sorting=ntvy,
+    doi=true,
+    isbn=true
+]{biblatex}
+
+\defbibheading{mybib}{%
+    \phantomsection
+    \anonsection{Список использованных источников}
 }
-\makeatother
 
 % Оформление исходного кода
 \renewcommand{\lstlistingname}{Листинг} % Название самого листинга
