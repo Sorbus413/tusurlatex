@@ -3,7 +3,6 @@
 % https://gitflic.ru/project/salixsorbus/tusurlatex
 
 \documentclass[xetex,a4paper,14pt]{extarticle} % Лабы
-%\documentclass[xetex,a4paper,14pt]{extreport} % КП, ВКР
 
 % Преамбула
 \usepackage{fontspec} % XeTeX
@@ -55,7 +54,6 @@
 
 
 % Подписи объектов
-%\RequirePackage{caption}
 \usepackage{caption}
 
 % Разделитель
@@ -64,12 +62,10 @@
 % Рисунок
 \captionsetup[figure]{justification=centering, labelsep=dash, format=plain} 
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}\vspace{24pt}}
-%\renewcommand{\thefigure}{\arabic{figure}}				 	% номер
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}		% секция.номер
 
 % Таблица
 \captionsetup[table]{justification=raggedright, labelsep=dash, format=plain, singlelinecheck=false}
-%\renewcommand{\thetable}{\arabic{table}}   				% номер
 \renewcommand{\thetable}{\thesection.\arabic{table}}   		% секция.номер
 
 % Листинг
