@@ -208,16 +208,15 @@
 
 % библиография
 \usepackage[
+    backend=biber,
     style=gost-numeric,
-    language=auto,
-    sorting=ntvy,
-    doi=true,
-    isbn=true
+    sorting=none
 ]{biblatex}
 \defbibheading{mybib}{%
     \phantomsection
     \anonsection{Список использованных источников}
 }
+\renewcommand\multicitedelim{\addcomma\space}
 
 % настройка листингов
 \renewcommand{\lstlistingname}{Листинг}
