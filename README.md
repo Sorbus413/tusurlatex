@@ -20,7 +20,7 @@
 ```sh
 mkdir repos
 cd repos
-git clone https://gitflic.ru/project/salixsorbus/tusurlatex.git
+git clone https://gitverse.ru/asorbus/tusurlatex.git
 ```
 
 **Перейдите** в папку с работой и
@@ -42,7 +42,7 @@ ln -s ~/repos/preamble.tex preamble.tex
 то подключите этот проект к вашему как подмодуль:
 
 ```sh
-git submodule add https://gitflic.ru/project/salixsorbus/tusurlatex.git
+git submodule add https://gitverse.ru/asorbus/tusurlatex.git
 ```
 
 Затем добавьте его в `.gitignore`:
