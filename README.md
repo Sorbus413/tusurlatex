@@ -15,14 +15,7 @@
 
 ### Символическая ссылка
 
-**Клонируйте** себе данный репозиторий
-
-```sh
-mkdir repos
-cd repos
-git clone https://gitverse.ru/asorbus/tusurlatex.git
-```
-
+**Клонируйте** себе данный репозиторий, например в папку `~/repos/`
 **Перейдите** в папку с работой и
 **Скопируйте** файл шаблона `template.tex` в эту папку:
 
@@ -39,11 +32,8 @@ ln -s ~/repos/preamble.tex preamble.tex
 ### Подмодуль
 
 Если проект вашей работы планируется размещать в git репозитории,
-то подключите этот проект к вашему как подмодуль:
-
-```sh
-git submodule add https://gitverse.ru/asorbus/tusurlatex.git
-```
+то подключите этот проект к вашему как подмодуль при помощи
+`git submodule add https://gitverse.ru/...`
 
 Затем добавьте его в `.gitignore`:
 
