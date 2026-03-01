@@ -1,4 +1,5 @@
 \input{preamble}
+\addbibresource{template.bib}
 
 \begin{document}
 	% в преамбуле не работает
@@ -72,18 +73,11 @@
 	
 \anonsection{Заключение}
 
-\addtocounter{section}{1}
+\printbibliography[heading=mybib]
 
-
-\renewcommand{\section}[2]{\anonsection{Список использованных источников}}
-\begin{thebibliography}{99}
-	\bibitem{kataev}
-	\textit{Объектно-ориентированное программирование} : учебное пособие /
-	М. Ю. Катаев. — Томск : Эль Контент, 2013. — 212 с.
-
-\end{thebibliography}
-
-\setcounter{section}{0}
+\makeatletter
+\renewcommand{\@currentlabel}{\theAppCount}
+\makeatother
 
 \appsection{Листинги программ}
 
