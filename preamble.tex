@@ -1,20 +1,18 @@
-% !TEX TS-program = xelatex
+% !TEX TS-program = lualatex
 % https://gitverse.ru/salixsorbus/tusurlatex.git
 
-\documentclass[xetex,a4paper,14pt]{extarticle} % Лабы
+\documentclass[a4paper,14pt]{extarticle}
 
 % Преамбула
-\usepackage{fontspec} % XeTeX
-\usepackage{xunicode}
-\usepackage{xltxtra}  % индексы
+\usepackage{fontspec}
 \usepackage{pdfpages}
 \usepackage[normalem]{ulem}
 
 % шрифты
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Liberation Serif}
-\setmonofont[Script=Cyrillic]{Liberation Mono}
-\setsansfont[Script=Cyrillic]{Liberation Sans}
+\setmonofont{Liberation Mono}
+\setsansfont{Liberation Sans}
 \newfontfamily\cyrillicfont{Liberation Serif}[Script=Cyrillic]
 \newfontfamily\cyrillicfontsans{Liberation Sans}[Script=Cyrillic]
 \newfontfamily\cyrillicfonttt{Liberation Mono}[Script=Cyrillic]
