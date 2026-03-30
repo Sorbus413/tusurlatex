@@ -224,13 +224,20 @@
 }
 \renewcommand\multicitedelim{\addcomma\space}
 
-% настройка листингов
+% листинги
+% имена листингов
 \renewcommand{\lstlistingname}{Листинг}
 \renewcommand{\lstlistlistingname}{Список листингов}
+
+% разные размеры для разных типов
+\BeforeBeginEnvironment{lstlisting}{\footnotesize}
+\pretocmd{\lstinputlisting}{\footnotesize}{}{}
+
+% настройка листингов
 \lstset{ 
 	aboveskip=0.5cm,
 	backgroundcolor=\color{white},
-	basicstyle=\small\ttfamily,
+	basicstyle=\ttfamily,
 	breakatwhitespace=false,
 	breaklines=true,
 	breakautoindent=false,
