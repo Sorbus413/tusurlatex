@@ -230,8 +230,16 @@
 \renewcommand{\lstlistlistingname}{Список листингов}
 
 % разные размеры для разных типов
-\BeforeBeginEnvironment{lstlisting}{\footnotesize}
-\pretocmd{\lstinputlisting}{\footnotesize}{}{}
+\BeforeBeginEnvironment{lstlisting}{%
+    \footnotesize
+    \hyphenpenalty=50
+    \exhyphenpenalty=50
+}
+\pretocmd{\lstinputlisting}{%
+    \footnotesize
+    \hyphenpenalty=50
+    \exhyphenpenalty=50
+}{}{}
 
 % настройка листингов
 \lstset{ 
