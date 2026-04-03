@@ -64,7 +64,7 @@
 
 % листинги
 \usepackage{listings}
-\captionsetup[lstlisting]{labelseparator=dash}
+\captionsetup[listing]{labelseparator=dash}
 
 % нумерация в пределах секций
 \usepackage{chngcntr}
@@ -184,10 +184,10 @@
     \stepcounter{AppCount}
     \setcounter{figure}{0}
     \setcounter{table}{0}
-    \setcounter{lstlisting}{0}
+    \setcounter{listing}{0}
     \renewcommand{\thefigure}{\theAppCount.\arabic{figure}}
     \renewcommand{\thetable}{\theAppCount.\arabic{table}}
-    \renewcommand{\thelstlisting}{\theAppCount.\arabic{lstlisting}}
+    \renewcommand{\thelisting}{\theAppCount.\arabic{listing}}
     \begin{center}
         \textbf{ПРИЛОЖЕНИЕ \theAppCount} \\
         \textbf{#1}
@@ -225,66 +225,32 @@
 \renewcommand\multicitedelim{\addcomma\space}
 
 % листинги
-% имена листингов
-\renewcommand{\lstlistingname}{Листинг}
-\renewcommand{\lstlistlistingname}{Список листингов}
+\usepackage[cachedir=minted_cache]{minted}
 
-% разные размеры для разных типов
-\BeforeBeginEnvironment{lstlisting}{%
-    \footnotesize
-    \hyphenpenalty=50
-    \exhyphenpenalty=50
-}
-\pretocmd{\lstinputlisting}{%
-    \footnotesize
-    \hyphenpenalty=50
-    \exhyphenpenalty=50
-}{}{}
+% имена листингов
+\renewcommand{\listingscaption}{Листинг}
+\renewcommand{\listoflistingscaption}{Список листингов}
 
 % настройка листингов
-\lstset{ 
-	aboveskip=0.5cm,
-	backgroundcolor=\color{white},
-	basicstyle=\small\ttfamily,
-	breakatwhitespace=false,
-	breaklines=true,
-	breakautoindent=false,
-	breakindent=0pt,
-	postbreak=\mbox{},
-	alsoletter={()},
-    alsodigit={()},
-    literate=*
-    {(}{{(}}1
-    {[}{{[}}1
-    {)}{{)}}1
-    {]}{{]}}1
-    {.}{{.}}1
-    {!}{{!}}1
-    {_}{{\textunderscore}}1,
-	keepspaces=true,
-	keywordstyle=\bfseries,
-	language=[Auto]Lisp,
-	morekeywords={},
-	numbers=left,
-	numbersep=12pt,
-	numberstyle=\footnotesize,
-	stepnumber=1,
-	showspaces=false,
-	showstringspaces=false,
-	showtabs=false,
-	tabsize=4,
-	title=\lstname,
-	captionpos=b,
-	extendedchars=true,
-	inputencoding=utf8,
-    xleftmargin=0.75cm
+\setminted{
+    breaklines=true,
+    breakanywhere=false,
+    linenos=true,
+    numbersep=12pt,
+    frame=none,
+    fontsize=\small,
+    xleftmargin=0.75cm,
+    tabsize=2
 }
-\lstdefinestyle{bash}
-{
-    numbers=none,
-    aboveskip=0.5cm,
-    belowskip=-0.75cm,
-    xleftmargin=0.5cm
-}
+
+% окружение для длинных листингов
+\usepackage{mdframed}
+\surroundwithmdframed[
+hidealllines=true,
+innerleftmargin=0pt,
+innerrightmargin=0pt,
+innertopmargin=0pt,
+innerbottommargin=0pt
+]{minted}
 
 \usepackage{lastpage}
