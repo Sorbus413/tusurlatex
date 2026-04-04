@@ -243,14 +243,20 @@
     tabsize=2
 }
 
+% bash
+\setminted[bash]{
+    linenos=false,
+    xleftmargin=-0.25cm
+}
+
 % окружение для длинных листингов
 \usepackage{mdframed}
 \surroundwithmdframed[
-hidealllines=true,
-innerleftmargin=0pt,
-innerrightmargin=0pt,
-innertopmargin=0pt,
-innerbottommargin=0pt
+    hidealllines=true,
+    innerleftmargin=0pt,
+    innerrightmargin=0pt,
+    innertopmargin=0pt,
+    innerbottommargin=0pt
 ]{minted}
 
 \usepackage{lastpage}
