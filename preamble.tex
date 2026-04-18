@@ -46,7 +46,6 @@
 \usepackage{graphicx}
 \graphicspath{{./images/}}
 
-
 % подписи объектов
 \usepackage{caption}
 
@@ -116,7 +115,7 @@
 \renewcommand{\cftsecfont}{\hspace{0pt}}
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
 \renewcommand\cftsecpagefont{\mdseries}
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 \addto\captionsrussian{\renewcommand{\contentsname}{ОГЛАВЛЕНИЕ}}
 
 % нумерация страниц
@@ -137,15 +136,37 @@
 % заголовки секций в оглавлении
 \usepackage{textcase}
 \makeatletter
-\let\oldcontentsline\contentsline
-\def\contentsline#1#2{
-    \expandafter\ifx\csname l@#1\endcsname\l@section
-    \expandafter\@firstoftwo
+% Флаг для отслеживания, что это настоящая секция
+\newif\ifrealsection
+\realsectiontrue
+
+% Сохраняем оригинальную команду section
+\let\oldsection\section
+\renewcommand{\section}{%
+    \realsectiontrue
+    \oldsection
+}
+
+% Переопределяем \addcontentsline для секций
+\let\oldaddcontentsline\addcontentsline
+\renewcommand{\addcontentsline}[3]{%
+    \def\tempa{#1}\def\tempb{toc}%
+    \def\tempc{#2}\def\tempd{section}%
+    \ifx\tempa\tempb
+        \ifx\tempc\tempd
+            \ifrealsection
+                \oldaddcontentsline{#1}{#2}{\MakeTextUppercase{#3}}%
+                \global\realsectiontrue
+            \else
+                \oldaddcontentsline{#1}{#2}{#3}%
+                \global\realsectiontrue
+            \fi
+        \else
+            \oldaddcontentsline{#1}{#2}{#3}%
+        \fi
     \else
-    \expandafter\@secondoftwo
+        \oldaddcontentsline{#1}{#2}{#3}%
     \fi
-    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
-    {\oldcontentsline{#1}{#2}}
 }
 \makeatother
 
@@ -171,17 +192,22 @@
 \renewcommand\section{\clearpage\stdsection}
 
 % секции без номеров
+\makeatletter
 \newcommand{\anonsection}[1]{
     \newpage
     \phantomsection
+    \global\realsectionfalse
     \paragraph{\textbf{\centering{#1}}}
     \addcontentsline{toc}{section}{#1}
 }
+\makeatother
 
 % приложения
+\makeatletter
 \newcommand{\appsection}[2][]{%
     \newpage
     \phantomsection   
+    \global\realsectionfalse
     \stepcounter{AppCount}
     \setcounter{figure}{0}
     \setcounter{table}{0}
@@ -201,11 +227,12 @@
         \textbf{#2}
     \end{center}
     \ifx&#1&%
-    \addcontentsline{toc}{section}{Приложение \theAppCount. #2}%
+    \addcontentsline{toc}{section}{Приложение \theAppCount\space #2}%
     \else%
-    \addcontentsline{toc}{section}{Приложение \theAppCount\space(#1). #2}%
+    \addcontentsline{toc}{section}{Приложение \theAppCount\space(#1) #2}%
     \fi%
 }
+\makeatother
 
 % счётчик приложений
 \newcounter{AppCount}
