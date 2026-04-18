@@ -179,7 +179,7 @@
 }
 
 % приложения
-\newcommand{\appsection}[1]{%
+\newcommand{\appsection}[2][]{%
     \newpage
     \phantomsection   
     \stepcounter{AppCount}
@@ -190,10 +190,21 @@
     \renewcommand{\thetable}{\theAppCount.\arabic{table}}
     \renewcommand{\thelisting}{\theAppCount.\arabic{listing}}
     \begin{center}
-        \textbf{ПРИЛОЖЕНИЕ \theAppCount} \\
-        \textbf{#1}
+        \textbf{Приложение \theAppCount}%
+        \ifx&#1&%
+        % если аргумент пустой, ничего не добавляем
+        \else%
+        \\
+        (#1)%
+        \fi%
+        \\
+        \textbf{#2}
     \end{center}
-    \addcontentsline{toc}{section}{Приложение \theAppCount. #1} 
+    \ifx&#1&%
+    \addcontentsline{toc}{section}{Приложение \theAppCount. #2}%
+    \else%
+    \addcontentsline{toc}{section}{Приложение \theAppCount\space(#1). #2}%
+    \fi%
 }
 
 % счётчик приложений
