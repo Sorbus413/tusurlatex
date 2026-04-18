@@ -174,10 +174,13 @@
 %\renewcommand{\thesubsection}{\thesection\arabic{subsection}}  % Убираем точку после section в subsection
 % заголовки
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}[block]{}{}{12.5mm}{\centering\textbf{\thesection\quad\MakeTextUppercase{#1}}}	
-\titleformat{\subsection}[block]{}{}{12.5mm}{\centering\textbf{\thesubsection\quad#1}}
+\titleformat{\section}[block]{\centering\bfseries}{}{0pt}{\thesection\quad\MakeTextUppercase{#1}}
+\titleformat{\subsection}[block]{\centering\bfseries}{}{0pt}{\thesubsection\quad#1}
 \titleformat{\subsubsection}[runin]{}{}{12.5mm}{\thesubsubsection\quad#1.}
-\titleformat{\paragraph}[block]{\vspace{24pt}}{}{12.5mm}{\vspace{12pt}\centering\textbf{\quad#1}}[\vspace{12pt}]
+\titleformat{\paragraph}[block]{\vspace{24pt}}{}{0pt}{\vspace{12pt}\centering\textbf{#1}}[\vspace{12pt}]
+
+\titlespacing*{\section}{0pt}{0pt}{24pt}
+\titlespacing*{\subsection}{0pt}{24pt}{24pt}
 
 \titlespacing*{\section}{0pt}{0pt}{24pt}
 \titlespacing*{\subsection}{0pt}{24pt}{24pt}
