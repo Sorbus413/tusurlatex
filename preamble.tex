@@ -258,11 +258,34 @@
 \usepackage[
     backend=biber,
     style=gost-numeric,
-    sorting=none
+    sorting=none,
+    movenames=false,
+    maxbibnames=99,
+    minbibnames=99
 ]{biblatex}
+
+% Настройка оформления списка литературы
+\DeclareFieldFormat{labelnumberwidth}{#1.}
+\setlength{\biblabelsep}{0.5em}
+\defbibenvironment{bibliography}
+{\list
+	{\printtext[labelnumberwidth]{%
+			\printfield{labelprefix}%
+			\printfield{labelnumber}}}
+	{\setlength{\labelwidth}{0pt}%
+		\setlength{\leftmargin}{0pt}%
+		\setlength{\labelsep}{0.5em}%
+		\setlength{\itemindent}{12.5mm}%
+		\addtolength{\itemindent}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}%
+	\renewcommand*{\makelabel}[1]{\hss##1}}
+{\endlist}
+{\item}
+
 \defbibheading{mybib}{%
-    \phantomsection
-    \anonsection{Список использованных источников}
+	\phantomsection
+	\anonsection{Список использованных источников}
 }
 \renewcommand\multicitedelim{\addcomma\space}
 
