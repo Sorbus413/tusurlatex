@@ -15,25 +15,20 @@
 
 ### Символическая ссылка
 
-**Клонируйте** себе данный репозиторий, например в папку `~/repos/`
-**Перейдите** в папку с работой и
-**Скопируйте** файл шаблона `template.tex` в эту папку:
+1. **Клонируйте** себе данный репозиторий, например в папку `~/projects/`
+1. **Перейдите** в папку с лабораторной или контрольной работой
+1. **Скопируйте** файлы шаблона `template.tex` `preamble.tex` в эту папку:
 
 ```sh
-cp ~/repos/tusurlatex/template.tex lab1.tex
-```
-
-**Создайте** символическую ссылку на файл преамбулы:
-
-```sh
-ln -s ~/repos/preamble.tex preamble.tex
+cp ~/projects/tusurlatex/template.tex lab1.tex
+cp ~/projects/tusurlatex/preamble.tex .
 ```
 
 ### Подмодуль
 
 Если проект вашей работы планируется размещать в git репозитории,
 то подключите этот проект к вашему как подмодуль при помощи
-`git submodule add https://gitverse.ru/...`
+`git submodule add https://git...`
 
 Затем добавьте его в `.gitignore`:
 
