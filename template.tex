@@ -2,9 +2,6 @@
 \addbibresource{template.bib}
 
 \begin{document}
-	% в преамбуле не работает
-	\counterwithin{lstlisting}{section} 
-	
 	\begin{titlepage}
 		\begin{center}
 			Министерство науки и высшего образования Российской Федерации\\
@@ -18,12 +15,10 @@
 		\vspace*{\fill}
 		
 		\begin{center}
-			\MakeTextUppercase{Разработка программы на языке C++}\\
+			\MakeTextUppercase{Название работы}\\
 			\vspace*{14pt}
-			% вид работы
-			Курсовой проект по дисциплине \\
-			% название
-			<<Объектно-ориентированное программирование>> \\
+			Вид работы по дисциплине \\
+			<<Название дисциплины>> \\
 		\end{center}
 		
 		\vspace*{\fill}
@@ -31,16 +26,12 @@
         \begin{flushright}
             \begin{minipage}[t]{0.3\textwidth}
                 \raggedright
-                Студент гр. % номер группы
-                \\
-                %% фамилия
-                ... \\
+                Студент гр. номер группы \\
+                Фамилия И.О. \\
                 \vspace*{14pt}
                 Руководитель \\
-                %% должность степень
-                ... \\
-                %% фамилия
-                ... \\
+                Должность степень \\
+                Фамилия И.О. \\
                 %% направление подготовки:
                 %09.03.01\\
                 %% наименование направления
@@ -53,8 +44,7 @@
 		
 		\vspace*{\fill}
 		\begin{center}
-			%% город
-			... \the\year
+			Город \the\year
 		\end{center}
 		
 	\end{titlepage}
@@ -79,7 +69,6 @@
 \renewcommand{\@currentlabel}{\theAppCount}
 \makeatother
 
-\appsection{Листинги программ}
-
+\appsection[Справочное или Обязательное]{Название приложения}
 
 \end{document}
