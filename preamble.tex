@@ -311,6 +311,19 @@
     minbibnames=99
 ]{biblatex}
 
+% Отключаем курсив для авторов в начале записи
+\renewcommand*{\mkgostheading}[1]{#1}
+
+% Убираем тире между блоками (в том числе перед городом)
+\renewcommand*{\newblockpunct}{\addperiod\space}
+
+% Принудительно задаем маленькую "с" для любых вариантов страниц
+\DefineBibliographyStrings{russian}{
+	page = {с\adddot},
+	pages = {с\adddot},
+	pagetotal = {с\adddot}
+}
+
 % Настройка оформления списка литературы
 \DeclareFieldFormat{labelnumberwidth}{#1.}
 \setlength{\biblabelsep}{0.5em}
@@ -330,6 +343,8 @@
 {\endlist}
 {\item}
 
+
+% Заголовок раздела литературы
 \defbibheading{mybib}{%
 	\phantomsection
 	\anonsection{Список использованных источников}
