@@ -111,7 +111,6 @@
 
 % листинги
 \usepackage{listings}
-\captionsetup[listing]{labelseparator=dash}
 
 % нумерация в пределах секций
 \usepackage{chngcntr}
@@ -338,11 +337,7 @@
 \renewcommand\multicitedelim{\addcomma\space}
 
 % листинги
-\usepackage[cachedir=minted_cache]{minted}
-
-% имена листингов
-\renewcommand{\listingscaption}{Листинг}
-\renewcommand{\listoflistingscaption}{Список листингов}
+\usepackage[newfloat,cachedir=minted_cache]{minted}
 
 % настройка листингов
 \setminted{
@@ -352,6 +347,16 @@
     numbersep=5pt,
     frame=none,
     xleftmargin=0.25cm
+}
+
+% подписи листингов
+\captionsetup[listing]{%
+	position=above,
+	labelsep=dash,
+	format=plain,
+	justification=raggedright,
+	singlelinecheck=false,
+	name=Листинг
 }
 
 % bash
