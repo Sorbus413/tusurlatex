@@ -356,6 +356,8 @@
 
 % листинги
 \usepackage[newfloat,cachedir=minted_cache]{minted}
+\counterwithin{listing}{section}
+\renewcommand{\thelisting}{\thesection.\arabic{listing}}
 
 % настройка листингов
 \setminted{
