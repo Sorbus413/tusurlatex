@@ -255,13 +255,17 @@
 }
 \makeatother
 
+% счётчик приложений
+\newcounter{AppCount}
+\renewcommand{\theAppCount}{\Asbuk{AppCount}}
+
 % приложения
 \makeatletter
 \newcommand{\appsection}[2][]{%
     \newpage
     \phantomsection   
     \global\realsectionfalse
-    \stepcounter{AppCount}
+    \refstepcounter{AppCount}
     \setcounter{figure}{0}
     \setcounter{table}{0}
     \setcounter{listing}{0}
@@ -286,10 +290,6 @@
     \fi%
 }
 \makeatother
-
-% счётчик приложений
-\newcounter{AppCount}
-\renewcommand{\theAppCount}{\Asbuk{AppCount}}
 
 % вставить перед первым \appsection в документ:
 
