@@ -43,6 +43,57 @@ tusurlatex/
 \begin{document}
     ...
 ```
+
+## Что еще можно добавить
+
+### Сети петри
+
+В преамбулу:
+
+```tex
+\usetikzlibrary{petri, positioning, arrows.meta}
+
+\tikzset{
+	>={Stealth},
+    place/.style={
+        circle,
+        draw,
+        minimum size=12mm,
+        inner sep=0pt
+        },
+    transition/.style={
+        rectangle,
+        draw,
+        fill=black,
+        minimum width=12mm,
+        minimum height=1.5mm,
+        inner sep=0pt,
+        node distance=2cm,
+        on grid
+    }
+}
+```
+
+В документ:
+
+```tex
+\begin{tikzpicture}
+   \node[place, tokens=3, label=left:\texttt{pWait}] (pWait) {};
+   \node[place, tokens=1, label=right:\texttt{pFree}] (pFree) [right=1.5cm of pWait] {};
+   \node[transition, label=left:\texttt{tStart}] (tStart) [below=of pWait] {};
+   \node[place, label=left:\texttt{pRun}] (pRun) [below=of tStart] {};
+   \node[transition, label=right:\texttt{tFinish}] (tFinish) [below=of pFree] {};
+
+   \path[->]
+   (pWait) edge (tStart)
+   (pFree) edge (tStart)
+   (tStart) edge (pRun)
+   (pRun) edge (tFinish)
+   (tFinish) edge (pFree)
+   (tFinish) edge (pWait);
+\end{tikzpicture}
+```
+
 ### Crow's Foot
 
 Рисование вороньих лапок в тексте.
