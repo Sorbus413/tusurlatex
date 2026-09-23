@@ -99,6 +99,7 @@
 
 % подписи объектов
 \usepackage{caption}
+\usepackage{subcaption}
 
 % разделитель
 \DeclareCaptionLabelSeparator{dash}{\space--\space}
@@ -107,6 +108,11 @@
 \captionsetup[figure]{justification=centering, labelsep=dash, format=plain} 
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}\vspace{24pt}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+% подрисунки
+\DeclareCaptionSubType*{figure}
+\renewcommand{\thesubfigure}{\asbuk{subfigure})}
+\captionsetup[subfigure]{labelformat=simple}
 
 % таблицы
 \captionsetup[table]{justification=raggedright, labelsep=dash, format=plain, singlelinecheck=false}
