@@ -65,8 +65,9 @@
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
 
 % подрисунки
-\captionsetup[subfigure]{labelsep=space, labelformat=simple}
-\renewcommand{\thesubfigure}{\asbuk{subfigure})}
+\DeclareCaptionLabelFormat{subfigurewithparen}{#2)}
+\captionsetup[subfigure]{labelsep=space, labelformat=subfigurewithparen}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
 % таблицы
 \captionsetup[table]{justification=raggedright, labelsep=dash, format=plain, singlelinecheck=false}
