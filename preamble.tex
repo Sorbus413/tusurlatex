@@ -28,9 +28,16 @@
 \usepackage{enumerate}
 \usepackage{indentfirst}
 \setlength{\parindent}{12.5mm}
-\usepackage{float}
 \usepackage{setspace}
 \setstretch{1.5}
+
+% плавающие объекты
+\usepackage{float}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{12pt plus 2fil}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 % таблицы
 \usepackage{array,tabularx,tabulary,booktabs}
