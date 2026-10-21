@@ -52,7 +52,7 @@
 \usepackage{amssymb}
 
 % нумерация формул в рамках раздела
-\numberwithin{equation}{section}
+\counterwithin{equation}{section}
 
 % пути изображений
 \usepackage{graphicx}
@@ -258,12 +258,6 @@
     \fi%
 }
 \makeatother
-
-% вставить перед первым \appsection в документ:
-
-%\makeatletter
-%\renewcommand{\@currentlabel}{\theAppCount}
-%\makeatother
 
 % оформление библиографии и подрисуночных записей через точку
 \makeatletter
