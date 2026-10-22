@@ -357,4 +357,39 @@
     innerbottommargin=0pt
 ]{minted}
 
+% реферат
 \usepackage{lastpage}
+\usepackage{refcount}
+\newcounter{bibitem}
+\AtEveryBibitem{\stepcounter{bibitem}}
+\usepackage[AppCount,bibitem,xspace]{totalcount}
+
+% глобальные счётчики для изображений и таблиц
+\usepackage{xassoccnt}
+\NewTotalDocumentCounter{totalfigures}
+\NewTotalDocumentCounter{totaltables}
+\DeclareAssociatedCounters{figure}{totalfigures}
+\DeclareAssociatedCounters{table}{totaltables}
+
+% склонения {цифра}{страница}{страницы}{страниц}
+\makeatletter
+\newcommand{\declension}[4]{%
+	\@tempcnta=#1\relax
+	\ifnum\@tempcnta=1 #2\else
+	\ifnum\@tempcnta>1
+	\ifnum\@tempcnta<5 #3\else#4\fi
+	\else#4\fi
+	\fi
+}
+\makeatother
+
+% вывод статистики для реферата
+\newcommand{\docstats}{%
+	\getpagerefnumber{LastPage}~\declension{\getpagerefnumber{LastPage}}{страница}{страницы}{страниц},
+	\TotalValue{totalfigures}~\expandafter\declension\expandafter{\TotalValue{totalfigures}}{рисунок}{рисунка}{рисунков},
+	\TotalValue{totaltables}~\expandafter\declension\expandafter{\TotalValue{totaltables}}{таблица}{таблицы}{таблиц},
+	\iftotalbibitems
+	\totalbibitems~\expandafter\declension\expandafter{\totalbibitems}{источник}{источника}{источников}\fi
+	\iftotalAppCounts,
+	\totalAppCounts~\expandafter\declension\expandafter{\totalAppCounts}{приложение}{приложения}{приложений}\fi.%
+}
